@@ -1,6 +1,7 @@
 import random
 import math
 import constants
+
 def generate_random_dataset(size):
     dataset = []
     for i in range(size):
@@ -17,14 +18,16 @@ def is_prime(n):
             return False
     return True
 
-def generate_prime_number(range):
+def generate_prime_number(range, type):
     prime_number = 0
     #set min range to half of the range
-    range_min = range / 2
+    if type == "quadratic":
+        range_min = range / 2
+    else:
+        range_min = range / 2
     while True:
-        prime_number = random.randint(range_min, range)
+        prime_number = random.randint(500000, range)
         if is_prime(prime_number):
             break
     return prime_number
-
 

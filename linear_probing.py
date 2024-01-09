@@ -1,12 +1,11 @@
 import constants
 
-
 class LinearProbingHash:
-    unseccessful_insert_count = 0
 
-    def __init__(self, size):
+    def __init__(self):
         self.size = constants.DATASET_SIZE
         self.hash_table = [None] * constants.HASH_TABLE_SIZE
+        self.unseccessful_insert_count = 0
 
     def hash(self, key):
         return key % self.size
@@ -16,7 +15,7 @@ class LinearProbingHash:
         if self.hash_table[hash_value] is None:
             self.hash_table[hash_value] = key
         else:
-            unseccessful_insert_count += 1
+            self.unseccessful_insert_count += 1
 
     def search(self, key):
         hash_value = self.hash(key)
@@ -53,4 +52,5 @@ class LinearProbingHash:
     def test_linear_probing(self, dataset):
         for key in dataset:
             self.insert(key)
+        print("Linear Probing Unseccessful Insert Count: ", self.unseccessful_insert_count, "\n")
         return self.unseccessful_insert_count
