@@ -1,54 +1,15 @@
 import matplotlib.pyplot as plt
 import random
 import math
+import util
 
-DATASET_SIZE = 600000
 HASH_TABLE_SIZE = 1000000
 
-def is_prime(n):
-    if n <= 1:
-        return False
-    for i in range(2, int(math.sqrt(n)) + 1):
-        if n % i == 0:
-            return False
-    return True
 
-def generate_prime_number():
-    prime_number = 0
-    while True:
-        prime_number = random.randint(0, 10000)
-        if is_prime(prime_number):
-            break
-    return prime_number
 
-def generate_random_dataset(size):
-    dataset = []
-    for i in range(size):
-        dataset.append(random.randint(0, 1000000))
-    return dataset
 
-def linear_probing_hash(key, size):
-    return key % size
 
-def quadratic_probing_hash(key, size):
-    c1 = generate_prime_number()
-    c2 = generate_prime_number()
-    i = 0
-    while True:
-        hash_value = (key + c1 * i + c2 * i**2) % size
-        if hash_value < size:
-            return hash_value
-        i += 1
 
-def double_hashing_hash(key, size):
-    hash1 = key % size
-    hash2 = 1 + (key % (size - 1))
-    i = 0
-    while True:
-        hash_value = (hash1 + i * hash2) % size
-        if hash_value < size:
-            return hash_value
-        i += 1
 
 def cuckoo_hashing_hash(key, size):
     hash1 = key % size
