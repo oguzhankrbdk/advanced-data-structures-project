@@ -31,3 +31,11 @@ def generate_prime_number(range, type):
             break
     return prime_number
 
+
+def read_dataset():
+    dataset = []
+    file = open("unique_numbers.txt", "r")
+    for line in file:
+        for number in line.split():
+            dataset.append(int(number))
+    return dataset
