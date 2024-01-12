@@ -2,9 +2,9 @@ import random
 import math
 import constants
 
-def generate_random_dataset(size):
+def generate_random_dataset():
     dataset = []
-    for i in range(size):
+    for i in range(constants.DATASET_SIZE):
         dataset.append(random.randint(0, 1000000))
     return dataset
 
@@ -18,15 +18,10 @@ def is_prime(n):
             return False
     return True
 
-def generate_prime_number(range, type):
+def generate_prime_number():
     prime_number = 0
-    #set min range to half of the range
-    if type == "quadratic":
-        range_min = range / 2
-    else:
-        range_min = range / 2
     while True:
-        prime_number = random.randint(500000, range)
+        prime_number = random.randint(500000, constants.HASH_TABLE_SIZE)
         if is_prime(prime_number):
             break
     return prime_number
