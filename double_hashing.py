@@ -1,3 +1,4 @@
+import time
 import constants
 import util
 
@@ -9,6 +10,7 @@ class DoubleHashing:
         self.r_value = r_value
         self.successful_insertion_count = 0
         self.unsuccessful_insertion_attempts = 0
+        self.execution_time = 0
     
     def hash_function_1(self, key):
         return key % self.size
@@ -72,7 +74,11 @@ class DoubleHashing:
         return util.generate_prime_number(self.size)
     
     def test_double_hashing(self, dataset):
+        start = time.time()
         for key in dataset:
             self.insert(key)
-        print("Double Hashing for r = ", self.r_value, " Unsuccessful Insertion Count: ", self.unsuccessful_insertion_count, "Unsuccesful Insertion Attempt Count: ", self.unsuccessful_insertion_attempts," Succesful Insertion Count: ", self.successful_insertion_count,"\n")
-        return self.unsuccessful_insertion_count
+        end = time.time()
+        self.execution_time = end - start
+        print("Double Hashing for r = ", self.r_value, " Unsuccessful Insertion Count: ", self.unsuccessful_insertion_count, "Unsuccesful Insertion Attempt Count: "
+              , self.unsuccessful_insertion_attempts," Succesful Insertion Count: ", self.successful_insertion_count, " Execution Time: ", self.execution_time, "\n")
+        return self.execution_time

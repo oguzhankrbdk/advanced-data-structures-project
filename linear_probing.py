@@ -1,3 +1,4 @@
+import time
 import constants
 
 class LinearProbing:
@@ -7,6 +8,7 @@ class LinearProbing:
         self.unsuccessful_insertion_count = 0
         self.successful_insertion_count = 0
         self.unsuccessful_insertion_attempts = 0
+        execution_time = 0
     
     def hash(self, key):
         return key % self.size
@@ -62,10 +64,14 @@ class LinearProbing:
                     break
 
     def test_linear_probing(self, dataset):
+        start = time.time()
         for key in dataset:
             self.insert(key)
-        print("Linear Probing Unsuccessful Insertion Count: ", self.unsuccessful_insertion_count, "Unsuccesful Insertion Attempt Count: ", self.unsuccessful_insertion_attempts," Successful insertion Count: ", self.successful_insertion_count,"\n")
-        return self.unsuccessful_insertion_count
+        end = time.time()
+        self.execution_time = end - start
+        print("Linear Probing Unsuccessful Insertion Count: ", self.unsuccessful_insertion_count, "Unsuccesful Insertion Attempt Count: "
+              , self.unsuccessful_insertion_attempts," Successful insertion Count: ", self.successful_insertion_count, " Execution Time: ", self.execution_time, "\n")
+        return self.execution_time
     
     def print_hash_table(self):
         print(self.hash_table)

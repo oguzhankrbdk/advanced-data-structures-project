@@ -1,3 +1,4 @@
+import time
 import util
 import constants
 
@@ -15,6 +16,7 @@ class QuadraticProbingHash:
         self.constant_1 = self.parameter_set[0]
         self.constant_2 = self.parameter_set[1]
         self.unsuccessful_insertion_attempts = 0
+        self.execution_time = 0
 
     def hash(self, key):
         return key % self.size
@@ -88,11 +90,15 @@ class QuadraticProbingHash:
         return parameter_set
     
     def test_quadratic_probing(self, dataset):
+        start = time.time()
         for key in dataset:
             self.insert(key)
-
-        print("Quadratic Probing for c1 = ", self.constant_1, " and c2 = ", self.constant_2, " Unsuccessful Insertion Count: ", self.unsuccessful_insertion_count, "Unsuccesful Insertion Attempt Count: ", self.unsuccessful_insertion_attempts," Succesful Insertion Count: ", self.successful_insertion_count,"\n")
-        return self.unsuccessful_insertion_count
+        end = time.time()
+        self.execution_time = end - start
+        print("Quadratic Probing for c1 = ", self.constant_1, " and c2 = ", self.constant_2, " Unsuccessful Insertion Count: "
+              , self.unsuccessful_insertion_count, "Unsuccesful Insertion Attempt Count: ", self.unsuccessful_insertion_attempts,
+              " Succesful Insertion Count: ", self.successful_insertion_count, " Execution Time: ", self.execution_time, "\n")
+        return self.execution_time
     
     def set_c1(self, c1):
         self.constant_1 = c1
